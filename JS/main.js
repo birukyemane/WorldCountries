@@ -19,23 +19,26 @@ const countries= ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla
       return (`#${randomNum.toString(16)}`);    
   }
   
-  function startsWith(){ // search countries that start with the input search key word
-		let keyWord = document.querySelector('#searchInput').value.toLowerCase(); 
-		return countries.filter(e => e.toLowerCase().startsWith(keyWord));
+  function startsWith(keyWord){ // search countries that start with the input search key word		
+		return countries.filter(e => e.toLowerCase().startsWith(keyWord));		
 	}
 	
-	function containsWord(){ // search countries that includes the search key word
-		let keyWord = document.querySelector('#searchInput').value.toLowerCase(); 
+	function containsWord(keyWord){ // search countries that includes the search key word		
 		return countries.filter(e => e.toLowerCase().includes(keyWord));
 	}
   
-  function displayResult(result){ // display the result data by creating the dom 
+  function displayResult(result){ // display the result data by creating element for each data and changing the dom
+		let item;
+		let container = 	document.querySelector('#container');
+		let	numOfResults = document.createElement('p');
+		numOfResults.textContent = `Countries that start with: ${result.length}`;	
+		container.appendChild(numOfResults);
 		result.forEach(element => {
-			let item = document.createElement('div');
+			item = document.createElement('div');
 			item.textContent = element;
-			document.querySelector('#container').appendChild(item);
+			container.appendChild(item);
 			item.style.background = randomHexaColor();
-		});
+		});				
 	}
 
 	function clearResult(){ // clears the dom 
@@ -43,23 +46,28 @@ const countries= ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla
 	}
 	
 	function runSearch(search,display){  
-		let reslut = search(); // search 
+		let keyWord = document.querySelector('#searchInput').value.toLowerCase(); 
+		let result = search(keyWord); // search 
 		clearResult(); // clear the display container div 
-		display(reslut); // display the reslut 
+		display(result); // display the reslut 		
 	}
 
 	function handleSearchEvent(e){ // it handles the whole process of searching
-		if(e.target.id == 'searchButton1'){
+		let startwith = document.querySelector('#startWord').checked;
+		let Anyword = document.querySelector('#anyWord').checked;
+		if(startwith){
 			runSearch(startsWith, displayResult);
-		} else {
+			} else {
 			runSearch(containsWord, displayResult);
 		}		
+		
 	}
 
    // Event handlers
 
-	document.querySelector('#searchButton1').addEventListener('click',handleSearchEvent);
-	document.querySelector('#searchButton2').addEventListener('click',handleSearchEvent);
+	document.querySelector('#searchInput').addEventListener('input',handleSearchEvent);
+
 
 	// initial state .. when the page loads first 
-			// may be list all countries 
+	let noOfCountries =  document.querySelector('#noOfCountries');
+	noOfCountries.append(document.createElement('textNode').value = countries.length);
