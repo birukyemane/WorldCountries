@@ -7,16 +7,33 @@
         <meta charset="UTF-8">
         <title>World countries Find patterns</title>
         <link rel="stylesheet" href="./css/style.css">
-            </head>
-    <body>
-        <header>
-            <h1>World countries List</h1>  
-            <p id="noOfCountries">Total number of countries </p>            
-            <input id="startWord" type="radio" name="wordPositon" value="startWord" checked=true> Start Word
-            <input id="anyWord" type="radio" name="wordPositon" value="anyWord"> Search Any Word<br><br/>
-            <input id="searchInput" type="text">
+        <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+     </head>
+    <body class="flex-container">
+        <header class="flex-container">
+          
+                <div class="flex-items">
+                    <i class="fa fa-globe fa-3x"></i> 
+                    <h1>World countries List</h1>                        
+                </div>
+                <p id="noOfCountries"  class="flex-items">Total number of countries </p> 
+                <hr>   
+                <div class="flex-items">                    
+                        <input id="startWord" type="radio" name="wordPositon" value="startWord">
+                        <label for="starWord"> Starts with</label>
+                        <input id="anyWord" type="radio" name="wordPositon" value="anyWord"> 
+                        <label for="anyWord">Includes</label>
+                </div>
+                
+                <input id="searchInput" type="text"  placeholder="type search" class="flex-items">
+               
+                </div>
+           
         </header>
-        <div id='container'></div>
+        <div id='container' class="flex-items"></div>
+        <script src="./JS/data.js"></script>
         <script src="./JS/main.js"></script>
     </body>
-</html> ``
+</html> 
